@@ -44,7 +44,7 @@ async function handleCalculate() {
   clearResults();
 
   try {
-    const params = new URLSearchParams({ query: queryString });
+    const params = new URLSearchParams({ query: ingredient });
     const response = await fetch(`/api/nutrition?${params}`);
     const data = await response.json();
 

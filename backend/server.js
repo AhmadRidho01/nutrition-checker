@@ -26,28 +26,21 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 // Routes
 
 app.get("/api/nutrition", async (req, res) => {
-  const { ingredient, quantity } = req.query;
+  const { query } = req.query;
 
   // Validasi Input
-  if (!ingredient || ingredient.trim() === "") {
+  if (!query || query.trim() === "") {
     return res.status(400).json({
       error: "Ingredient name is required.",
     });
   }
-
-  // Bangun Query String untuk API Ninja
-  // Contoh hasil: "2 lbs Organic Chia Seeds"
-  // Jika quantity tidak diisi, kirim ingredient saja
-  const queryString = quantity
-    ? `${quantity.trim()} ${ingredient.trim()}`
-    : ingredient.trim();
 
   try {
     // Panggil API Ninja
     const response = await axios.get(
       "https://api.api-ninjas.com/v1/nutrition",
       {
-        params: { query: queryString },
+        params: { query: query.trim() },
         headers: {
           "X-Api-Key": process.env.API_NINJA_KEY,
         },
@@ -59,7 +52,7 @@ app.get("/api/nutrition", async (req, res) => {
     // Cek apakah API mengembalikan hasil
     if (!data || data.length === 0) {
       return res.status(404).json({
-        error: `No nutritional data found for "${ingredient}". Please check the ingredient name and try again.`,
+        error: `No nutritional data found for "${query}". Please check the ingredient name and try again.`,
       });
     }
 
