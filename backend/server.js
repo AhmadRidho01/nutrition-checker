@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Routes
 
-app.get("/api/nutritionitem", async (req, res) => {
+app.get("/api/nutrition", async (req, res) => {
   const { ingredient, quantity } = req.query;
 
   // Validasi Input
@@ -45,12 +45,9 @@ app.get("/api/nutritionitem", async (req, res) => {
   try {
     // Panggil API Ninja
     const response = await axios.get(
-      "https://api.api-ninjas.com/v1/nutritionitem",
+      "https://api.api-ninjas.com/v1/nutrition",
       {
-        params: {
-          query: ingredient.trim(), // ← nama bahan makanan saja
-          quantity: quantity.trim(), // ← quantity terpisah
-        },
+        params: { query: queryString },
         headers: {
           "X-Api-Key": process.env.API_NINJA_KEY,
         },
@@ -60,13 +57,10 @@ app.get("/api/nutritionitem", async (req, res) => {
     const data = response.data;
 
     // Cek apakah API mengembalikan hasil
-    if (!ingredient || ingredient.trim() === "") {
-      return res.status(400).json({ error: "Ingredient name is required." });
-    }
-
-    // Tambahkan validasi ini
-    if (!quantity || quantity.trim() === "") {
-      return res.status(400).json({ error: "Quantity is required." });
+    if (!data || data.length === 0) {
+      return res.status(404).json({
+        error: `No nutritional data found for "${ingredient}". Please check the ingredient name and try again.`,
+      });
     }
 
     // Kirim data kembali ke frontend

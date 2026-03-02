@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutrition Analyzer</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts: clean & modern -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <span class="logo-icon">🌿</span>
+          <span class="logo-text">NutriCheck</span>
+        </div>
+        <p class="tagline">Real-time nutrition analysis for every ingredient</p>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <div class="container">
+        <!-- Search Card -->
+        <section class="search-card">
+          <h2 class="search-title">Analyze Nutritional Content</h2>
+          <p class="search-subtitle">
+            Enter an ingredient and quantity to get detailed nutrition facts
+          </p>
+
+          <div class="input-group">
+            <!-- Kolom 1: Raw Material -->
+            <div class="input-wrapper">
+              <label for="ingredient" class="input-label"
+                >Quantity & Raw Material</label
+              >
+              <input
+                type="text"
+                id="ingredient"
+                class="input-field"
+                placeholder="e.g. 100g corn and rice"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Tombol Calculate -->
+            <button id="calculateBtn" class="btn-calculate">
+              <span class="btn-text">Calculate</span>
+              <span class="btn-loading hidden">Analyzing...</span>
+            </button>
+          </div>
+
+          <!-- Error Message -->
+          <div id="errorMsg" class="error-message hidden"></div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-section hidden">
+          <!-- Ingredient Title -->
+          <div class="results-header">
+            <h3 id="resultsTitle" class="results-title"></h3>
+            <span id="resultsSubtitle" class="results-subtitle"></span>
+          </div>
+
+          <!-- Cards Grid: satu card per item dari API -->
+          <div id="resultsGrid" class="results-grid"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 | FoodTech 🤝 IT</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

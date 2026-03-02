@@ -1,0 +1,352 @@
+/* ============================================
+   style.css - NutriCheck Styling
+   Color palette: Sage green, off-white, warm tones
+   ============================================ */
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Organic / Natural Color Palette */
+  --sage-dark: #4a7c59;
+  --sage: #6b9e7a;
+  --sage-light: #a8c5b0;
+  --sage-pale: #e8f2eb;
+  --cream: #faf8f4;
+  --white: #ffffff;
+  --text-dark: #2c3e30;
+  --text-mid: #5a6b5e;
+  --text-light: #8fa394;
+  --border: #dde8df;
+  --shadow: rgba(74, 124, 89, 0.1);
+  --shadow-hover: rgba(74, 124, 89, 0.2);
+  --error: #c0392b;
+  --error-bg: #fdf0ef;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.logo-icon {
+  font-size: 1.6rem;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--sage-dark);
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 48px 0 64px;
+}
+
+/* Search Card */
+.search-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 24px var(--shadow);
+  margin-bottom: 36px;
+}
+
+.search-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.search-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.input-wrapper {
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-wrapper--small {
+  flex: 0 0 150px;
+  min-width: 130px;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  background: var(--cream);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--text-light);
+}
+
+.input-field:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(107, 158, 122, 0.15);
+  background: var(--white);
+}
+
+/* Button */
+.btn-calculate {
+  padding: 12px 28px;
+  background: var(--sage-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+  white-space: nowrap;
+  align-self: flex-end;
+  height: 46px;
+}
+
+.btn-calculate:hover {
+  background: var(--sage);
+  box-shadow: 0 4px 16px var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.btn-calculate:active {
+  transform: translateY(0);
+}
+
+.btn-calculate:disabled {
+  background: var(--sage-light);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--error-bg);
+  border: 1px solid #e8b4b0;
+  border-radius: 8px;
+  color: var(--error);
+  font-size: 0.88rem;
+}
+
+/* Results */
+.results-section {
+  animation: fadeInUp 0.35s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.results-header {
+  margin-bottom: 24px;
+}
+
+.results-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.results-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-left: 8px;
+}
+
+/* Nutrition Card */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.nutrition-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.nutrition-card__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sage-dark);
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.nutrition-card__serving {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nutrition-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nutrition-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.nutrition-list__label {
+  color: var(--text-mid);
+}
+
+.nutrition-list__value {
+  font-weight: 600;
+  color: var(--text-dark);
+  background: var(--sage-pale);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+}
+
+/* Calories gets special treatment */
+.nutrition-list__item--calories .nutrition-list__label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.nutrition-list__item--calories .nutrition-list__value {
+  background: var(--sage-dark);
+  color: var(--white);
+  font-size: 0.88rem;
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}
+
+/* Footer */
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+.footer a {
+  color: var(--sage-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .search-card {
+    padding: 24px 20px;
+  }
+
+  .input-wrapper--small {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .btn-calculate {
+    width: 100%;
+  }
+}
