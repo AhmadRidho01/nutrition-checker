@@ -5,6 +5,9 @@
 
 // DOM Elements
 
+const tutorialModal = document.getElementById("tutorialModal");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+const modalExamples = document.querySelectorAll(".modal-example");
 const ingredientInput = document.getElementById("ingredient");
 const calculateBtn = document.getElementById("calculateBtn");
 const errorMsg = document.getElementById("errorMsg");
@@ -16,6 +19,18 @@ const btnText = calculateBtn.querySelector(".btn-text");
 const btnLoading = calculateBtn.querySelector(".btn-loading");
 
 // Event Listeners
+
+modalCloseBtn.addEventListener("click", closeModal);
+
+// Klik contoh → auto-fill input & tutup modal
+modalExamples.forEach((example) => {
+  example.addEventListener("click", () => {
+    const query = example.getAttribute("data-query");
+    ingredientInput.value = query;
+    closeModal();
+    ingredientInput.focus();
+  });
+});
 
 // Klik tombol Calculate
 calculateBtn.addEventListener("click", handleCalculate);
@@ -149,28 +164,29 @@ function createNutritionCard(item) {
 
 // UI Helper Functions
 
-/** Tampilkan pesan error */
+// Tutup modal
+function closeModal() {
+  tutorialModal.classList.add("hidden");
+}
+
+// Tampilkan pesan error
 function showError(message) {
   errorMsg.textContent = message;
   errorMsg.classList.remove("hidden");
 }
 
-/** Sembunyikan pesan error */
+// Sembunyikan pesan error
 function hideError() {
   errorMsg.textContent = "";
   errorMsg.classList.add("hidden");
 }
 
-/** Bersihkan section hasil sebelumnya */
+// Bersihkan section hasil sebelumnya
 function clearResults() {
   resultsGrid.innerHTML = "";
   resultsSection.classList.add("hidden");
 }
 
-/**
- * Set loading state tombol
- * @param {boolean} isLoading
- */
 function setLoadingState(isLoading) {
   calculateBtn.disabled = isLoading;
 

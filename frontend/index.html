@@ -12,6 +12,96 @@
     />
   </head>
   <body>
+    <!-- MODAL -->
+    <div id="tutorialModal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <span class="modal-icon">🌿</span>
+          <h2 class="modal-title">Welcome to NutriLyzer</h2>
+          <p class="modal-subtitle">Here's how to use the Nutrition Analyzer</p>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-rule">
+            <span class="modal-rule__icon">✏️</span>
+            <div>
+              <p class="modal-rule__title">How to write</p>
+              <p class="modal-rule__desc">
+                Type the <strong>quantity + unit + ingredient</strong> in one
+                input field. Multiple ingredients can be combined using
+                <strong>"and"</strong> or <strong>","</strong> (commas).
+              </p>
+            </div>
+          </div>
+
+          <div class="modal-rule">
+            <span class="modal-rule__icon">📏</span>
+            <div>
+              <p class="modal-rule__title">Supported units</p>
+              <p class="modal-rule__desc">
+                All common units are supported — weight, volume, or count.
+              </p>
+
+              <div class="modal-tags">
+                <span class="modal-tag">g</span>
+                <span class="modal-tag">kg</span>
+                <span class="modal-tag">lbs</span>
+                <span class="modal-tag">oz</span>
+                <span class="modal-tag">cup</span>
+                <span class="modal-tag">tbsp</span>
+                <span class="modal-tag">tsp</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-rule">
+            <span class="modal-rule__icon">💡</span>
+            <div>
+              <p class="modal-rule__title">Examples</p>
+              <div class="modal-examples">
+                <div class="modal-example" data-query="10g brisket and fries">
+                  <code>10g brisket and fries</code>
+                </div>
+                <div class="modal-example" data-query="2 lbs brisket and fries">
+                  <code>2 lbs brisket and fries</code>
+                </div>
+                <div
+                  class="modal-example"
+                  data-query="1 cup oatmeal and banana"
+                >
+                  <code>1 cup oatmeal and banana</code>
+                </div>
+                <div class="modal-example" data-query="10 tbsp olive oil">
+                  <code>10 tbsp olive oil</code>
+                </div>
+              </div>
+              <p class="modal-tip">
+                💬 Tip: Click any example above to auto-fill the input!
+              </p>
+            </div>
+          </div>
+
+          <div class="modal-rule">
+            <span class="modal-rule__icon">⚠️</span>
+            <div>
+              <p class="modal-rule__title">Important note on commas</p>
+              <p class="modal-rule__desc">
+                If your query contains commas, replace them with
+                <strong>"%2C"</strong> to avoid errors. Example:
+                <code>salt%2C pepper</code>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="modalCloseBtn" class="btn-modal-close">
+            Got it, let's start!
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- HEADER -->
     <header class="header">
       <div class="container">
@@ -30,7 +120,7 @@
         <section class="search-card">
           <h2 class="search-title">Analyze Nutritional Content</h2>
           <p class="search-subtitle">
-            Enter an ingredient and quantity to get detailed nutrition facts
+            Enter an quantity and ingredient to get detailed nutrition facts
           </p>
 
           <div class="input-group">
@@ -43,7 +133,7 @@
                 type="text"
                 id="ingredient"
                 class="input-field"
-                placeholder="e.g. 10g corn and 10g rice"
+                placeholder="Search.."
                 autocomplete="off"
               />
             </div>
